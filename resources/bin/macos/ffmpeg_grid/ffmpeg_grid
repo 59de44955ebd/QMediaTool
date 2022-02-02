@@ -1,0 +1,56 @@
+#!/bin/bash
+#######################################
+# Usage:
+# ffmpeg_grid 8 8 160 90 "-c:v libx264 -an" output.mp4 input1.mp4 ...
+# ffmpeg_grid 2 1 160 90 "-c:v libx264 -an" output.mp4 /Users/fluxus/Movies/test.mp4
+#######################################
+
+# Copy args into named vars
+cols=$1
+rows=$2
+w=$3
+h=$4
+extra_args=$5
+output=$6
+
+declare -i w_total=$w*$cols
+declare -i h_total=$h*$rows
+declare -i max_x=$cols-1
+declare -i max_y=$rows-1
+declare -i cnt=$cols*$rows
+
+ffmpeg_cmd="$FFMPEG -y -hide_banner"
+
+ffscr1=""
+ffscr2=""
+
+# Loop over all videos in grid
+declare -i i=0
+for ((y=0;y<=$max_y;y++)); do
+	for ((x=0;x<=$max_x;x++)); do
+		varname=INPUT$i
+		if [ "${!varname}" != "" ]; then input="${!varname}";fi
+		ffmpeg_cmd="$ffmpeg_cmd -i $input"
+
+		ffscr1="$ffscr1[$i:v] setpts=PTS-STARTPTS, scale=${w}x${h} [${x}${y}];"
+
+		declare -i xx=$x*$w
+		declare -i yy=$y*$h
+		ffscr2="$ffscr2[tmp$i][${x}${y}] overlay=shortest=1:x=${xx}:y=${yy}"
+
+		declare -i i=$i+1
+		if [ "$i" -lt $cnt ]; then ffscr2="$ffscr2[tmp$i];";fi
+	done
+done
+
+# Create filter_complex_script
+ffscr="nullsrc=size=${w_total}x${h_total} [tmp0];$ffscr1$ffscr2"
+
+# Run FFmpeg command
+if $IS_WIN ; then
+	echo $ffscr>$TMPDIR/~ffscr
+	eval "$ffmpeg_cmd -filter_complex_script $(cygpath -m $TMPDIR/~ffscr) $extra_args $output"
+	rm ${TMPDIR}/~ffscr 2>/dev/null
+else
+	eval "echo \"$ffscr\"|$ffmpeg_cmd -filter_complex_script /dev/stdin $extra_args $output"
+fi

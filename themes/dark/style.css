@@ -1,0 +1,29 @@
+* {
+	font-size:11px;
+}
+QProgressBar {
+	height:10px;
+}
+QProgressBar#progressBarCurrentDur::chunk {
+	border-radius:2px;
+	background-color:#06b025;
+}
+QProgressBar#progressBarRecommendedDur::chunk {
+	border-radius:2px;
+	background-color:#bb0000;
+}
+QToolButton:checked {
+	background-color:#2A82DA;
+}
+QPlainTextEdit:focus {
+	border:1px solid #53A0ED;
+}
+QTextEdit:focus {
+	border:1px solid #53A0ED;
+}
+QTextBrowser#textBrowserHelp:focus {
+	border:none;
+}
+QPlainTextEdit {
+	font-family: Monaco,"Courier New";
+}

@@ -1,0 +1,66 @@
+<head>
+<style>
+body {
+	font-family: Arial;
+}
+pre {
+	font-family: Monaco, "Courier New";
+	margin: 0;
+	padding: 0;
+}
+</style>
+</head>
+<body>
+<h2>1. Overview</h2>
+Hello World!
+
+<h2>2. Presets</h2>
+
+<h3>2.1 Template Variables</h3>
+<pre>
+# general variables
+
+$IS_WIN                 true if current OS is Windows, otherwise false
+$START                  start time in seconds (float)
+$END                    end time in seconds (float)
+$DURATION               duration in seconds (float)
+$CONTAINER              container (string)
+$CONTAINERVIDEO         container (string)
+$CONTAINERAUDIO         container (string)
+$CONTAINERIMAGE         container (string)
+$CODECVIDEO             codec (string)
+$CODECAUDIO             codec (string)
+$BITRATEAUDIO           bitrate
+$PRESET                 preset
+$FPS                    fps (float)
+$CRF                    crf (int)
+$DEVICEVIDEO            name of selected video device
+$DEVICEAUDIO            name of selected audio device
+$OUTPUTDIR              selected output directory
+$TIMESTAMP              current time in format "Ymd_HMS"
+
+# single input file mode
+
+$INPUT                  input file as full path
+$INPUTDIR               directory of input file
+$INPUTBASENAME          filename of input file (with spaces replaced by underscore)
+$INPUTEXT               file extension if input file
+$FORMAT0, $FORMAT1, ... format of first, second, ... track
+$FPS0, $FPS1, ...       frame rate of first, second, ... track
+$TRACK                  number of selected track (starting at 0)
+$FORMAT                 format of track selected by $TRACK
+
+# input url mode
+
+$URL                    URL entered into field "Input URL"
+
+# multiple input files mode
+
+$CNT                    the number of input files
+$INPUT0, $INPUT1, ...   first, second, ... input file as full path
+$INPUTEXT               extension of first input file
+$INPUTBASENAME          filename of first input file (with spaces replaced by underscore)
+
+</pre>
+
+</body>
