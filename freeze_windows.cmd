@@ -1,6 +1,7 @@
 @echo off
 @setlocal enableextensions enabledelayedexpansion
 
+mkdir build 2>nul
 rmdir /S /Q build\exe.win-amd64-3.7 2>nul
 
 python setup.py build_exe

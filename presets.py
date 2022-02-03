@@ -1,8 +1,6 @@
-#****************************************************************************
-# @file      QPyMediaTool - preset manager
-# @author    Valentin Schmidt
-# @version   0.1
-#****************************************************************************
+"""
+QMediaTool - presets manager
+"""
 
 import sqlite3
 

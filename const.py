@@ -1,3 +1,7 @@
+"""
+QMediaTool - constants
+"""
+
 import os
 import sys
 

@@ -1,5 +1,8 @@
-from PyQt5.QtCore import QProcess
+"""
+QMediaTool - MyProcess class
+"""
 
+from PyQt5.QtCore import QProcess
 
 ########################################
 #

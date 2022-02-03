@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir build 2>/dev/null
 rm -R -f build/exe.macosx-10.9-x86_64-3.7 2>/dev/null
 rm -R -f build/QMediaTool.app 2>/dev/null
 

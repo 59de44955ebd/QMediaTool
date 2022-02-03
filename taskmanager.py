@@ -1,8 +1,6 @@
-#****************************************************************************
-# @file      QPyMediaTool - task manager
-# @author    Valentin Schmidt
-# @version   0.1
-#****************************************************************************
+"""
+QMediaTool - task manager
+"""
 
 import os
 

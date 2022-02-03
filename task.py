@@ -1,3 +1,7 @@
+"""
+QMediaTool - Task class
+"""
+
 import os
 import tempfile
 from const import IS_WIN, BASH
@@ -31,7 +35,5 @@ class Task():
             with open(self._tmpfile, 'w') as f:
                 f.write(command)
             proc.start(BASH, [self._tmpfile])
-        elif IS_WIN:
-            proc.start(BASH, ['-c', command])
         else:
-            proc.start(command)
+            proc.start(BASH, ['-c', command])

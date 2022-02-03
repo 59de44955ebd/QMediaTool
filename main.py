@@ -1,8 +1,6 @@
-#****************************************************************************
-# @file      QPyMediaTool - main class
-# @author    Valentin Schmidt
-# @version   0.1
-#****************************************************************************
+"""
+QMediaTool - Main class
+"""
 
 from const import *
 
@@ -179,35 +177,7 @@ class Main (QMainWindow):
         self._server.newConnection.connect(self.slotNewConnection)
         self._socket = None
         # get list of available devices
-        self._devices = {'video':[], 'audio':[]}
-        task = Task('$FFMPEG -hide_banner -list_devices true -f dshow -i dummy'
-                if IS_WIN else '$FFMPEG -hide_banner -list_devices true -f avfoundation -i /dev/null')
-        proc = QProcess()
-        task.run(proc)
-        proc.waitForFinished(-1)
-        res = proc.readAllStandardError().data().decode().rstrip()
-        if IS_WIN:
-            lines = res.split('\r\n')
-            for line in lines:
-                if ']' in line:
-                    line = line[line.index(']')+2:].strip()
-                    if line.startswith('DirectShow video devices'):
-                        w = self._configWidgets['DeviceVideo']
-                    elif line.startswith('DirectShow audio devices'):
-                        w = self._configWidgets['DeviceAudio']
-                    if line.startswith('"'):
-                        w.addItem(line[1:line.index('"',1)])
-        else:
-            lines = res.split('\n')
-            for line in lines:
-                if ']' in line:
-                    line = line[line.index(']')+2:].strip()
-                    if line.startswith('AVFoundation video devices'):
-                        w = self._configWidgets['DeviceVideo']
-                    elif line.startswith('AVFoundation audio devices'):
-                        w = self._configWidgets['DeviceAudio']
-                    elif line.startswith('['):
-                        w.addItem(line[line.index(']')+2:])
+        self.loadDevices()
         self.treeWidgetPresets.setFocus()
         self.show()
         if IS_WIN:
@@ -225,14 +195,6 @@ class Main (QMainWindow):
             self._taskBarButton = QWinTaskbarButton(self)
             self._taskBarButton.setWindow(self.windowHandle())
             self._taskBarProgress = self._taskBarButton.progress()
-
-    ########################################
-    #
-    ########################################
-    def changeEvent (self, e):
-        if self.isMinimized():
-            self._trayIcon.show()
-            self.hide()
 
     ########################################
     #
@@ -392,6 +354,39 @@ class Main (QMainWindow):
             self.selectPreset(selectID)
 
     ########################################
+    #
+    ########################################
+    def loadDevices (self):
+        task = Task('$FFMPEG -hide_banner -list_devices true -f dshow -i dummy'
+                if IS_WIN else '$FFMPEG -hide_banner -list_devices true -f avfoundation -i /dev/null')
+        proc = QProcess()
+        task.run(proc)
+        proc.waitForFinished(-1)
+        lines = proc.readAllStandardError().data().decode().rstrip().splitlines()
+        if IS_WIN:
+            re_vid = re.compile('^\[[^\]]*\] "(.*)" \(video\)')
+            re_aud = re.compile('^\[[^\]]*\] "(.*)" \(audio\)')
+            for line in lines:
+                res = re.search(re_vid, line)
+                if res:
+                    self._configWidgets['DeviceVideo'].addItem(res.group(1))
+                res = re.search(re_aud, line)
+                if res:
+                    self._configWidgets['DeviceAudio'].addItem(res.group(1))
+        else:
+            re_dev = re.compile('^\[[^\]]*\] (.*)')
+            for line in lines:
+                res = re.search(re_dev, line)
+                if res:
+                    line = res.group(1)
+                    if line.startswith('AVFoundation video'):
+                        w = self._configWidgets['DeviceVideo']
+                    elif line.startswith('AVFoundation audio'):
+                        w = self._configWidgets['DeviceAudio']
+                    elif line.startswith('['):
+                        w.addItem(line[line.index(']')+2:])
+
+    ########################################
     # Connect menu actions
     ########################################
     def setupMenuActions (self):
@@ -529,7 +524,6 @@ class Main (QMainWindow):
             f, ext = os.path.splitext(inputFile)
             env['INPUTEXT'] = ext[1:]
             env['INPUTBASENAME'] = os.path.basename(f).replace(' ', '_')
-            inputs = ''
             for i in range(cnt):
                 inputFile = self.listWidgetInput.item(i).text()
                 env['INPUT' + str(i)] = inputFile
@@ -619,36 +613,17 @@ class Main (QMainWindow):
         else:
             self._duration = 0
         s += str(len(info['tracks'])) + ' Tracks:'
-
-        # for i in range(len(info['tracks'])):
-        #     track = info['tracks'][i]
-        #     if 'track_id' in track:
-        #         idStr = ' (ID=' + str(track['track_id'] - 1) + ')'
-        #     else:
-        #         idStr = ''
-        #     s += '\nTrack ' + str(i) + idStr + ': ' + 'Type = ' + track['track_type']
-        #     if 'format' in track:
-        #         s += ', Format = ' + track['format']
-        #         if 'format_info' in track:
-        #             s += ' (' + track['format_info'] + ')'
-
-        # test
         try:
             tracks = sorted(info['tracks'], key=lambda x: x['track_id'])
         except:
             tracks = info['tracks']
         for i in range(len(tracks)):
             track = tracks[i]
-            # if 'track_id' in track:
-            #     idStr = ' (ID=' + str(track['track_id'] - 1) + ')'
-            # else:
-            #     idStr = ''
             s += '\nTrack ' + str(i) + ': ' + 'Type = ' + track['track_type']
             if 'format' in track:
                 s += ', Format = ' + track['format']
                 if 'format_info' in track:
                     s += ' (' + track['format_info'] + ')'
-
         self.plainTextEditInfos.setPlainText(s)
 
     ########################################
@@ -671,6 +646,14 @@ class Main (QMainWindow):
     def out (self, s):
         self.plainTextEditOutput.appendPlainText(s)
         self.plainTextEditOutput.ensureCursorVisible()
+
+    ########################################
+    #
+    ########################################
+    def changeEvent (self, e):
+        if self.isMinimized():
+            self._trayIcon.show()
+            self.hide()
 
     ########################################
     #

@@ -63,7 +63,7 @@
    <item>
     <widget class="QLabel" name="labelCommandLine">
      <property name="text">
-      <string>Command Line: *</string>
+      <string>Code: *</string>
      </property>
     </widget>
    </item>

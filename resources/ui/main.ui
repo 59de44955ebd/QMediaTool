@@ -689,7 +689,7 @@
            </size>
           </property>
           <property name="title">
-           <string>Command Line</string>
+           <string>Code</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
            <property name="leftMargin">
