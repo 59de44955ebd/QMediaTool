@@ -1,6 +1,16 @@
 # QMediaTool
 A general purpose media conversion tool based on Python 3, PyQt5, SQLite 3 and [FFmpeg](https://ffmpeg.org/) (or yet another FFmpeg GUI).
 
+# Screenshots #
+
+QMediaTool running in Windows 8.1:
+
+![](screenshots/qmediatool_win8.1.png)
+
+QMediaTool running in macOS 11.6:
+
+![](screenshots/qmediatool_macos11.6.png)
+
 # Presets and Tasks #
 
 QMediaTool is basically a database for your favorite ffmpeg command lines, which are called "presets" in the app. Presets can be organized under arbitrary categories, the predefined categories and presets are just an offer, and you might as well delete or rename them as desired and use your own ones.
@@ -96,13 +106,3 @@ Or if ffmpeg can be found in the system path, just:
 
 Of course this approach also works for the other provided binaries.
 
-
-# Screenshots #
-
-QMediaTool running in Windows 8.1:
-
-![](screenshots/qmediatool_win8.1.png)
-
-QMediaTool running in macOS 11.6:
-
-![](screenshots/qmediatool_macos11.6.png)
