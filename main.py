@@ -211,6 +211,7 @@ class Main (QMainWindow):
             return
         self._currentPreset = dict(preset)
         self.lineEditPreset.setText(preset['name'])
+        #self.labelPresetName.setText('Preset: ' + preset['name'].strip())
         # show/hide custom argument widgets
         show = False
         for c in self._configVars:
@@ -915,7 +916,7 @@ class Main (QMainWindow):
     ########################################
     def slotAbout (self):
         msg = '<b>' + APP_NAME + ' v0.' + str(APP_VERSION) + '</b><br><br>'
-        msg += 'A general purpose media conversion tool based on Python 3, PyQt5 and FFmpeg.'
+        msg += 'A general purpose media conversion tool based on<br>Python 3, PyQt5, SQLite and <a href="https://ffmpeg.org/">FFmpeg</a>.'
         QMessageBox.about(self, 'About ' + APP_NAME, msg)
 
     ########################################
