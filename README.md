@@ -21,7 +21,7 @@ You can add new presets and categories via app menu, existing presets and catego
 
 Presets are templates for actual tasks, and a preset is loaded into the "Task Editor" by double-clicking its name in the "Presets" pane.
 
-Presets/tasks can either have just a single or multiple lines of code. Task code is always executed with [Bash](https://www.gnu.org/software/bash/), both in macOS and Windows. The Bash shell for Windows is based on [MSYS](https://www.msys2.org/), in addition to the predefined Bash commands also the following commands can be used: basename, cat, cp, cygpath, dirname, env, find, grep, kill, ls, mkdir, mv, rm, rmdir, sleep, sort, tee
+Presets/tasks can either have just a single or multiple lines of code. Task code is always executed with [Bash](https://www.gnu.org/software/bash/), both in macOS and Windows. The Bash shell for Windows is based on [MSYS](https://www.msys2.org/), in addition to the predefined Bash commands also the following commands can be used: basename, cat, cp, cygpath, dirname, env, find, grep, kill, ls, mkdir, mv, rm, rmdir, sleep, sort, tee.
 
 You can edit a task's code (loaded from a preset) at runtime before executing it, and e.g. adjust/add/remove parameters etc. There are also GUI widgets for some basic FFmpeg parameters, so you can either use those to adjust values (which are then provided to the task as environment variables, see below) or by typing them into the code field.
 
@@ -94,7 +94,7 @@ In adition to ffmpeg, the following binaries are included both for macOS and Win
 
 Those tools are just an offer, you might as well remove them and instead add others. To add a new tool - either a binary or a shell script - called _toolname_ (or _toolname.exe_), create a new folder called _toolname_ in resources\bin\win\ (Windows) or QMediaTool.app/Contents/Resources/bin/macos/ (macOS) and put it into this folder. After restarting QMediaTool, you can  reference it in presets/tasks using variable _$TOOLNAME_ (all upper case).
 
-If you prefer to use your system's/a pre-installed version of ffmpeg instead of the provided binary, you can rename or delete the provided binary in resources\bin\win\ffmpeg\ (Windows) or QMediaTool.app/Contents/Resources/bin/, and instead put a single line shell script called "ffmpeg" into this folder which might look like this:
+If you prefer to use your system's/a pre-installed version of ffmpeg instead of the provided binary, you can rename or delete the provided binary in resources\bin\win\ffmpeg\ (Windows) or QMediaTool.app/Contents/Resources/bin/macos/ffmpeg, and instead put a single line shell script called "ffmpeg" into this folder which might look like this:
 
 `/usr/local/bin/ffmpeg "$@"`
 
