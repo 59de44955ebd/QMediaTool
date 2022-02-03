@@ -1,5 +1,5 @@
 # QMediaTool
-A general purpose media conversion tool based on Python 3, PyQt5, SQLite 3 and [FFmpeg](https://ffmpeg.org/) (or yet another FFmpeg GUI).
+A general purpose media conversion tool based on Python 3, PyQt5, SQLite 3 and [FFmpeg](https://ffmpeg.org/).
 
 
 # Screenshots #
