@@ -914,7 +914,7 @@ class Main (QMainWindow):
     # @callback
     ########################################
     def slotAbout (self):
-        msg = '<b>' + APP_NAME + ' '+'v0.' + str(APP_VERSION) + '</b><br><br>'
+        msg = '<b>' + APP_NAME + ' v0.' + str(APP_VERSION) + '</b><br><br>'
         msg += 'A general purpose media conversion tool based on Python 3, PyQt5 and FFmpeg.'
         QMessageBox.about(self, 'About ' + APP_NAME, msg)
 

@@ -33,8 +33,8 @@ rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/translations
 find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/plugins -mindepth 1 -maxdepth 1 -type d \
 -not -name 'platforms' -not -name 'platformthemes' \
 -print0|xargs -0 -I {} rm -R -f {}
-rm /Users/fluxus/Desktop/QMediaTool/build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/plugins/platforms/libqoffscreen.dylib
-rm /Users/fluxus/Desktop/QMediaTool/build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/plugins/platforms/libqwebgl.dylib
+rm build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/plugins/platforms/libqoffscreen.dylib
+rm build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/plugins/platforms/libqwebgl.dylib
 
 # remove needless frameworks
 find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/lib -mindepth 1 -maxdepth 1 -type d \
