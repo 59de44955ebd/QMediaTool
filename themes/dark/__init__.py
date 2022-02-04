@@ -1,7 +1,7 @@
 import os
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtWidgets import QApplication, qApp
 
 # set style
 QApplication.setStyle('Fusion')
@@ -29,13 +29,8 @@ pal.setColor(QPalette.Disabled, QPalette.Highlight, QColor(80,80,80))
 pal.setColor(QPalette.HighlightedText, Qt.white)
 pal.setColor(QPalette.Disabled, QPalette.HighlightedText, QColor(127,127,127))
 qApp.setPalette(pal)
-		
+
 # load style.css
 p = os.path.dirname(os.path.realpath(__file__))+'/'
-fn = p + 'style.css'
-with open(fn, 'r') as f:
-	css = f.read()
-	qApp.setStyleSheet(css)
-		
-# load icon recource file
-#QResource.registerResource(p+'icons.rcc')
+with open(p + 'style.css', 'r') as f:
+    qApp.setStyleSheet(f.read())

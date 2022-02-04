@@ -363,7 +363,7 @@ class Main (QMainWindow):
         proc = QProcess()
         task.run(proc)
         proc.waitForFinished(-1)
-        lines = proc.readAllStandardError().data().decode().rstrip().splitlines()
+        lines = proc.readAllStandardError().data().decode(errors='ignore').rstrip().splitlines()
         if IS_WIN:
             re_vid = re.compile('^\[[^\]]*\] "(.*)" \(video\)')
             re_aud = re.compile('^\[[^\]]*\] "(.*)" \(audio\)')
@@ -764,7 +764,7 @@ class Main (QMainWindow):
     # @callback
     ########################################
     def slotStderr (self):
-        s = self._proc.readAllStandardError().data().decode().strip(' \n\r')
+        s = self._proc.readAllStandardError().data().decode(errors='ignore').strip(' \n\r')
         self.out(s)
 
     ########################################
@@ -1089,7 +1089,7 @@ class Main (QMainWindow):
     # @callback
     ########################################
     def slotSocketReadyRead (self):
-        s = self._socket.readAll().data().decode()
+        s = self._socket.readAll().data().decode(errors='ignore')
         res = re.search('progress=([a-z]*)', s)
         if res is not None and res.group(1) == 'end':
             self._progressBar.setValue(100)
