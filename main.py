@@ -53,6 +53,8 @@ class Main (QMainWindow):
         self._currentPreset = None
         # set env vars
         os.environ['IS_WIN'] = 'true' if IS_WIN else 'false'
+        if IS_WIN:
+            os.environ['TMPDIR'] = os.environ['TMP'] + '\\'
         self.setupToolEnvVars()
         # single file mode
         self.pushButtonInputSelect.released.connect(self.slotInputSelect)
@@ -503,15 +505,13 @@ class Main (QMainWindow):
                 for i in range(len(tracks)):
                     track = tracks[i]
                     if 'format' in track:
-                        fmt = track['format']
-                        env['FORMAT' + str(i)] = fmt
+                        env['FORMAT' + str(i)] = track['format']
                     if 'frame_rate' in track:
                         env['FPS' + str(i)] = track['frame_rate']
                 # variables for currently selected track
                 track = tracks[trackNum]  # -1
                 if 'format' in track:
-                    fmt = track['format']
-                    os.environ['FORMAT'] = fmt
+                    env['FORMAT'] = track['format']
             else:
                 env['URL'] = self.lineEditURL.text()
             # arguments variables
