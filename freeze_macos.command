@@ -25,19 +25,19 @@ cp presets.db build/
 
 # remove needless folders
 rm -R -f build/QMediaTool.app/Contents/MacOS/PyQt5.uic.widget-plugins
-rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/qml
-rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/qsci
-rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/translations
+rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/qml
+rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/qsci
+rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/translations
 
 # remove needless plugins
-find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/plugins -mindepth 1 -maxdepth 1 -type d \
+find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/plugins -mindepth 1 -maxdepth 1 -type d \
 -not -name 'platforms' -not -name 'platformthemes' \
 -print0|xargs -0 -I {} rm -R -f {}
-rm build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/plugins/platforms/libqoffscreen.dylib
-rm build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/plugins/platforms/libqwebgl.dylib
+rm build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/plugins/platforms/libqoffscreen.dylib
+rm build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/plugins/platforms/libqwebgl.dylib
 
 # remove needless frameworks
-find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt/lib -mindepth 1 -maxdepth 1 -type d \
+find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/lib -mindepth 1 -maxdepth 1 -type d \
 -not -name QtCore.framework -not -name QtDBus.framework -not -name QtGui.framework \
 -not -name QtNetwork.framework -not -name QtPrintSupport.framework -not -name QtWidgets.framework \
 -print0|xargs -0 -I {} rm -R -f {}
@@ -66,6 +66,7 @@ rm build/QMediaTool.dmg 2>/dev/null
 rm -R -f build/dist 2>/dev/null
 mkdir build/dist
 mkdir build/dist/QMediaTool
+mkdir build/dist/QMediaTool/output
 cp -R build/QMediaTool.app build/dist/QMediaTool/QMediaTool.app
 cp presets.db build/dist/QMediaTool/
 python3 make_dmg.py "build/dist" "build/QMediaTool.dmg" "QMediaTool"

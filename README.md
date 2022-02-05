@@ -1,19 +1,51 @@
 # QMediaTool
 A general purpose media conversion tool based on Python 3, PyQt5, SQLite 3 and [FFmpeg](https://ffmpeg.org/).
 
-
 # Screenshots #
 
-QMediaTool running in Windows 8.1:
+<div class="image-wrapper">
+  <img src="https://github.com/59de44955ebd/QMediaTool/blob/main/screenshots/qmediatool_win8.1.png" width="512">
+  <p><i>QMediaTool in Windows 8.1</i></p>
+</div>
+<div>
+  <img src="https://github.com/59de44955ebd/QMediaTool/blob/main/screenshots/qmediatool_macos11.6.png" width="512">
+  <p><i>QMediaTool in macOS 11.6</i></p>
+</div>
 
-![](screenshots/qmediatool_win8.1.png)
+# Install from Git #
 
-QMediaTool running in macOS 11.6:
+QMediaTool requires Python 3.x. The commands below were tested with Python 3.7.4.
 
-![](screenshots/qmediatool_macos11.6.png)
+Windows:
+```
+$ git clone https://github.com/59de44955ebd/QMediaTool.git
+$ cd QMediaTool
+$ python -m venv env
+$ .\env\Scripts\activate
+$ python -m pip install --upgrade pip
+$ pip install -r requirements.txt
+# Run
+$ python main.py
+# Freeze
+$ .\freeze_windows.cmd
+```
+macOS:
+```
+$ git clone https://github.com/59de44955ebd/QMediaTool.git
+$ cd QMediaTool
+$ python3 -m venv env
+$ source env/bin/activate
+$ python3 -m pip install --upgrade pip
+$ pip3 install -r requirements.txt
+# Run
+$ python3 main.py
+# Freeze
+$ ./freeze_macos.command
+```
 
+# Usage #
 
-# Presets and Tasks #
+## Presets and Tasks ##
 
 QMediaTool is basically a database for your favorite ffmpeg command lines, which are called "presets" in the app. Presets can be organized under arbitrary categories, the predefined categories and presets are just an offer, and you might as well delete or rename them as desired and use your own ones.
 
@@ -27,8 +59,7 @@ You can edit a task's code (loaded from a preset) at runtime before executing it
 
 Presets can have 0, 1 or multiple files or a URL as input, input files can be added by dropping them into the app window.
 
-
-# Environment variables #
+## Environment variables ##
 
 When a selected preset is executed as task, in addition to the system's default variables the following environment variables are provided:
 
@@ -77,7 +108,7 @@ When a selected preset is executed as task, in addition to the system's default 
 * $INPUTBASENAME          - filename of first input file (with spaces replaced by underscore)
 
 
-# Provided/included binaries #
+## Provided/included binaries ##
 
 In adition to ffmpeg, the following binaries are included both for macOS and Windows:
 

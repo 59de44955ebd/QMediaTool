@@ -23,15 +23,16 @@ copy resources\ui\taskmanager.ui build\exe.win-amd64-3.7\resources\ui\
 copy resources\ui\res.rcc build\exe.win-amd64-3.7\resources\ui\
 xcopy resources\bash build\exe.win-amd64-3.7\resources\bash\ /E
 xcopy resources\bin\win build\exe.win-amd64-3.7\resources\bin\win\ /E
+mkdir build\exe.win-amd64-3.7\output
 
 :: copy current presets.db to target dir
 copy /y presets.db build\exe.win-amd64-3.7\
 
 :: remove needless folders
 rmdir /S /Q build\exe.win-amd64-3.7\PyQt5.uic.widget-plugins
-rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt
+rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt 2>nul
 rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\qml
-rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\resources
+rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\resources 2>nul
 rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\translations
 
 :: remove needless plugins
