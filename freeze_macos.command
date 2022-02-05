@@ -23,21 +23,23 @@ cp -R resources/bin/macos build/QMediaTool.app/Contents/Resources/bin/
 # copy current presets.db to target dir
 cp presets.db build/
 
+qtdir=build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt
+
 # remove needless folders
 rm -R -f build/QMediaTool.app/Contents/MacOS/PyQt5.uic.widget-plugins
-rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/qml
-rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/qsci
-rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/translations
+rm -R -f $qtdir/qml
+rm -R -f $qtdir/qsci
+rm -R -f $qtdir/translations
 
 # remove needless plugins
-find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/plugins -mindepth 1 -maxdepth 1 -type d \
+find $qtdir/plugins -mindepth 1 -maxdepth 1 -type d \
 -not -name 'platforms' -not -name 'platformthemes' \
 -print0|xargs -0 -I {} rm -R -f {}
-rm build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/plugins/platforms/libqoffscreen.dylib
-rm build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/plugins/platforms/libqwebgl.dylib
+rm $qtdir/plugins/platforms/libqoffscreen.dylib
+rm $qtdir/plugins/platforms/libqwebgl.dylib
 
 # remove needless frameworks
-find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5/lib -mindepth 1 -maxdepth 1 -type d \
+find $qtdir/lib -mindepth 1 -maxdepth 1 -type d \
 -not -name QtCore.framework -not -name QtDBus.framework -not -name QtGui.framework \
 -not -name QtNetwork.framework -not -name QtPrintSupport.framework -not -name QtWidgets.framework \
 -print0|xargs -0 -I {} rm -R -f {}
