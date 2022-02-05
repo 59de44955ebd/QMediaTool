@@ -1,3 +1,10 @@
-pymediainfo~=5.0.3
-PyQt5~=5.15.4
-cx_Freeze~=6.10
+cx-Freeze==6.10
+cx-Logging==3.0
+importlib-metadata==4.10.1
+lief==0.11.5
+pymediainfo==5.0.4
+PyQt5==5.15.6
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.9.1
+typing_extensions==4.0.1
+zipp==3.7.0

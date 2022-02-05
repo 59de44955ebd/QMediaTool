@@ -1,6 +1,8 @@
 /.idea
 /.vscode
 /output/*
+!/output/.gitkeep
+/env
 *.code-workspace
 __pycache__
 /build/*
