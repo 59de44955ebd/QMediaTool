@@ -69,6 +69,7 @@ mkdir build/dist/QMediaTool
 mkdir build/dist/QMediaTool/output
 cp -R build/QMediaTool.app build/dist/QMediaTool/QMediaTool.app
 cp presets.db build/dist/QMediaTool/
+cp README.md build/dist/QMediaTool/
 python3 make_dmg.py "build/dist" "build/QMediaTool.dmg" "QMediaTool"
 
 # clean up

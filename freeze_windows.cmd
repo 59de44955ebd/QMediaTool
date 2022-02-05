@@ -1,8 +1,8 @@
 @echo off
 @setlocal enableextensions enabledelayedexpansion
 
-mkdir build 2>nul
-rmdir /S /Q build\exe.win-amd64-3.7 2>nul
+md build 2>nul
+rd /S /Q build\exe.win-amd64-3.7 2>nul
 
 python setup.py build_exe
 
@@ -14,8 +14,8 @@ python setup.py build_exe
 move build\exe.win-amd64-3.7\python3.dll build\exe.win-amd64-3.7\lib\
 
 :: copy resources to target dir
-mkdir build\exe.win-amd64-3.7\resources
-mkdir build\exe.win-amd64-3.7\resources\ui
+md build\exe.win-amd64-3.7\resources
+md build\exe.win-amd64-3.7\resources\ui
 copy resources\ui\help.ui build\exe.win-amd64-3.7\resources\ui\
 copy resources\ui\main.ui build\exe.win-amd64-3.7\resources\ui\
 copy resources\ui\presets.ui build\exe.win-amd64-3.7\resources\ui\
@@ -23,23 +23,25 @@ copy resources\ui\taskmanager.ui build\exe.win-amd64-3.7\resources\ui\
 copy resources\ui\res.rcc build\exe.win-amd64-3.7\resources\ui\
 xcopy resources\bash build\exe.win-amd64-3.7\resources\bash\ /E
 xcopy resources\bin\win build\exe.win-amd64-3.7\resources\bin\win\ /E
-mkdir build\exe.win-amd64-3.7\output
+copy README.md build\exe.win-amd64-3.7\
+md build\exe.win-amd64-3.7\output
 
 :: copy current presets.db to target dir
 copy /y presets.db build\exe.win-amd64-3.7\
 
 :: remove needless folders
-rmdir /S /Q build\exe.win-amd64-3.7\PyQt5.uic.widget-plugins
-rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt 2>nul
-rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\qml
-rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\resources 2>nul
-rmdir /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\translations
+rd /S /Q build\exe.win-amd64-3.7\PyQt5.uic.widget-plugins
+rd /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt 2>nul
+rd /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\qml 2>nul
+if exist build\exe.win-amd64-3.7\lib\PyQt5\Qt5\qml rd /s /q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\qml
+rd /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\resources 2>nul
+rd /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\translations
 
 :: remove needless plugins
 set PLUGINS_NEEDED="platforms;platformthemes"
 for /d %%a IN ("build\exe.win-amd64-3.7\lib\PyQt5\Qt5\plugins\*") do (
 	call set str=%%PLUGINS_NEEDED:%%~nxa=%%
-	if !str! == %PLUGINS_NEEDED% rmdir /S /Q  "%%a"
+	if !str! == %PLUGINS_NEEDED% rd /S /Q  "%%a"
 )
 
 :: remove needless platforms
@@ -58,7 +60,7 @@ for %%a IN ("build\exe.win-amd64-3.7\lib\PyQt5\Qt5\bin\*") do (
 set BINDINGS_NEEDED="QtCore:QtGui:QtNetwork:QtWidgets:QtWinExtras"
 for /d %%a IN ("build\exe.win-amd64-3.7\lib\PyQt5\bindings\*") do (
 	call set str=%%BINDINGS_NEEDED:%%~nxa=%%
-	if !str! == %BINDINGS_NEEDED% rmdir /S /Q  "%%a"
+	if !str! == %BINDINGS_NEEDED% rd /S /Q  "%%a"
 )
 
 :: remove needless pyi files

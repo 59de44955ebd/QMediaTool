@@ -17,7 +17,7 @@ build_exe_options = {
         "QtQuick", "QtSvg", "QtDBus", "QtWebSockets"
     ],
     "bin_path_excludes": [
-        "resources"
+        "resources", "qml"
     ],
     "includes": ["mytreewidget", "taskmanager"]
 }
