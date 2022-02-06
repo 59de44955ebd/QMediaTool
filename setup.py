@@ -1,53 +1,52 @@
 import sys
 from cx_Freeze import Executable, setup
+from const import APP_VERSION
+from datetime import datetime
 
-# base="Win32GUI" should be used only for Windows GUI app
-base = None
-if sys.platform == "win32":
-    base = "Win32GUI"
+base = 'Win32GUI' if sys.platform == 'win32' else None
 
 build_exe_options = {
-    "excludes": [
-        "tkinter", "unittest", "PyQtWebEngine",
-        "distutils", "html", "http",
-        "pydoc_data", "test", "xmlrpc"
+    'excludes': [
+        'tkinter', 'unittest', 'PyQtWebEngine',
+        'distutils', 'html', 'http',
+        'pydoc_data', 'test', 'win32com', 'xmlrpc'
     ],
-    "bin_excludes" : [
-        "QtMultimedia", "QtPrintSupport", "QtQml", "QtQmlModels",
-        "QtQuick", "QtSvg", "QtDBus", "QtWebSockets"
+    'bin_excludes' : [
+        'QtMultimedia', 'QtPrintSupport', 'QtQml', 'QtQmlModels',
+        'QtQuick', 'QtSvg', 'QtDBus', 'QtWebSockets'
     ],
-    "bin_path_excludes": [
-        "resources", "qml"
+    'bin_path_excludes': [
+        'resources', 'qml', '__pycache__'
     ],
-    "includes": ["mytreewidget", "taskmanager"]
+    'includes': ['mytreewidget', 'taskmanager']
 }
 
 bdist_mac_options = {
-    "bundle_name": "QMediaTool",
+    'bundle_name': 'QMediaTool',
 }
 
 bdist_dmg_options = {
-    "volume_label": "QMediaTool",
+    'volume_label': 'QMediaTool',
 }
 
 executables = [
     Executable(
-        "main.py",
-        copyright="Copyright (c) 2022 fx",
+        'main.py',
+        copyright='Copyright (c) {} fx'.format(datetime.now().year),
         base=base,
-        target_name="QMediaTool",
-        icon="app.ico",
+        target_name='QMediaTool',
+        icon='app.ico',
     ),
 ]
 
 setup(
-    name="QMediaTool",
-    version="0.1",
-    description="QMediaTool",
+    name='QMediaTool',
+    version='0.{}'.format(APP_VERSION),
+    description='QMediaTool',
     options={
-        "build_exe": build_exe_options,
-        "bdist_mac": bdist_mac_options,
-        "bdist_dmg": bdist_dmg_options,
+        'build_exe': build_exe_options,
+        'bdist_mac': bdist_mac_options,
+        'bdist_dmg': bdist_dmg_options,
     },
     executables=executables,
 )
