@@ -33,7 +33,7 @@ rm -R -f $qtdir/translations
 
 # remove needless plugins
 find $qtdir/plugins -mindepth 1 -maxdepth 1 -type d \
--not -name 'platforms' -not -name 'platformthemes' \
+-not -name 'platforms' \
 -print0|xargs -0 -I {} rm -R -f {}
 rm $qtdir/plugins/platforms/libqoffscreen.dylib
 rm $qtdir/plugins/platforms/libqwebgl.dylib
@@ -45,10 +45,7 @@ find $qtdir/lib -mindepth 1 -maxdepth 1 -type d \
 -print0|xargs -0 -I {} rm -R -f {}
 
 # remove needless bindings
-find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/bindings -mindepth 1 -maxdepth 1 -type d \
--not -name QtCore -not -name QtDBus -not -name QtGui \
--not -name QtNetwork -not -name QtPrintSupport -not -name QtWidgets \
--print0|xargs -0 -I {} rm -R -f {}
+rm -R -f build/QMediaTool.app/Contents/MacOS/lib/PyQt5/bindings
 
 # remove needless pyi files
 find build/QMediaTool.app/Contents/MacOS/lib/PyQt5/*.pyi -maxdepth 1 -type f \
