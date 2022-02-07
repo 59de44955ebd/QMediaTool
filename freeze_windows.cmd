@@ -44,7 +44,7 @@ rd /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\resources 2>nul
 rd /S /Q build\exe.win-amd64-3.7\lib\PyQt5\Qt5\translations
 
 :: remove needless plugins
-set PLUGINS_NEEDED="platforms"
+set PLUGINS_NEEDED="platforms:styles"
 for /d %%a IN ("build\exe.win-amd64-3.7\lib\PyQt5\Qt5\plugins\*") do (
 	call set str=%%PLUGINS_NEEDED:%%~nxa=%%
 	if !str! == %PLUGINS_NEEDED% rd /S /Q  "%%a"

@@ -27,3 +27,9 @@ QTextBrowser#textBrowserHelp:focus {
 QPlainTextEdit {
 	font-family: Monaco,"Courier New";
 }
+QMenu::separator {
+	background-color: #4d4d4d;
+	height:1px;
+	margin-top:3px;
+	margin-bottom:0px;
+}

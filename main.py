@@ -35,15 +35,20 @@ class Main (QMainWindow):
         self.setWindowTitle(APP_NAME)
         # load settings
         self._state = QSettings('fx', APP_NAME)
+
         # load theme
+        theme = self._state.value('Theme', 'dark')
         if theme == 'dark':
             import themes.dark
         else:
             import themes.default
+
         self._outputSep = '-' * 80
         # load UI
         QResource.registerResource(RES_DIR + '/ui/res.rcc')
         uic.loadUi(RES_DIR + '/ui/main.ui', self)
+        self.actionDarkTheme.setChecked(theme == 'dark')
+        self.actionDarkTheme.toggled.connect(self.slotThemeChanged)
         # setup drop support
         self.setAcceptDrops(True)
         # defaults
@@ -1115,14 +1120,21 @@ class Main (QMainWindow):
         self.taskManager.addTask(self.getTask())
         self.tabWidget.setCurrentIndex(1)
 
+    ########################################
+    # @callback
+    ########################################
+    def slotThemeChanged (self, is_dark):
+        self._state.setValue('Theme', 'dark' if is_dark else 'default')
+        msg = 'Displaying the new theme requires the application to be restarted.\n\nRestart now?'
+        res = QMessageBox.question(self, 'Theme Change', msg, QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+        if res == QMessageBox.Yes:
+            os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
+
 ########################################
 #
 ########################################
-def main(theme='default'):
-    app = QApplication(sys.argv)
-    Main(app, theme)
-    sys.exit(app.exec())
-
 if __name__ == '__main__':
     sys.excepthook = traceback.print_exception
-    main('dark')
+    app = QApplication(sys.argv)
+    main = Main(app, 'dark')
+    sys.exit(app.exec())

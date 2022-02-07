@@ -937,6 +937,8 @@
     <addaction name="actionTaskEditor"/>
     <addaction name="actionTaskQueue"/>
     <addaction name="actionOutputLog"/>
+    <addaction name="separator"/>
+    <addaction name="actionDarkTheme"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menu_View"/>
@@ -1046,6 +1048,14 @@
   <action name="actionNewPresetCategory">
    <property name="text">
     <string>New Preset &amp;Category...</string>
+   </property>
+  </action>
+  <action name="actionDarkTheme">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Dark Theme</string>
    </property>
   </action>
  </widget>
