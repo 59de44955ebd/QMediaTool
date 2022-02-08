@@ -14,7 +14,7 @@ A general purpose media conversion tool based on Python 3, PyQt5, SQLite 3 and [
 
 # Install from Git #
 
-QMediaTool requires Python 3.x. The commands below were tested with Python 3.7.4.
+QMediaTool requires Python 3.x. The commands below were tested with Python 3.7.4 and 3.10.2.
 
 Windows:
 ```

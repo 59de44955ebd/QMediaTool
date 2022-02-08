@@ -1,7 +1,16 @@
 #!/bin/bash
 
+# get macOS version as string, e.g. "11.6"
+v=$(sw_vers -productVersion)
+ver_macos="$(cut -d'.' -f1,2 <<<"$v")"
+
+# get python version as string, e.g. "3.10"
+v=$(python3 -V)
+v="$(cut -d' ' -f2 <<<"$v")"
+ver_python="$(cut -d'.' -f1,2 <<<"$v")"
+
 mkdir build 2>/dev/null
-rm -R -f build/exe.macosx-10.9-x86_64-3.7 2>/dev/null
+rm -R -f build/exe.macosx-$ver_macos-x86_64-$ver_python 2>/dev/null
 rm -R -f build/QMediaTool.app 2>/dev/null
 
 python3 setup.py bdist_mac --iconfile app.icns
@@ -23,7 +32,7 @@ cp -R resources/bin/macos build/QMediaTool.app/Contents/Resources/bin/
 # copy current presets.db to target dir
 cp presets.db build/
 
-qtdir=build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt
+qtdir=build/QMediaTool.app/Contents/MacOS/lib/PyQt5/Qt5
 
 # remove needless folders
 rm -R -f build/QMediaTool.app/Contents/MacOS/PyQt5.uic.widget-plugins
@@ -73,7 +82,7 @@ python3 make_dmg.py "build/dist" "build/QMediaTool.dmg" "QMediaTool"
 
 # clean up
 rm -R -f build/dist 2>/dev/null
-rm -R -f build/exe.macosx-10.9-x86_64-3.7 2>/dev/null
+rm -R -f build/exe.macosx-$ver_macos-x86_64-$ver_python 2>/dev/null
 
 echo
 echo "Done."
