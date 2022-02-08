@@ -657,7 +657,7 @@ class Main (QMainWindow):
     #
     ########################################
     def changeEvent (self, e):
-        if self.isMinimized():
+        if IS_WIN and self.isMinimized():
             self._trayIcon.show()
             self.hide()
 
@@ -1128,7 +1128,8 @@ class Main (QMainWindow):
         msg = 'Displaying the new theme requires the application to be restarted.\n\nRestart now?'
         res = QMessageBox.question(self, 'Theme Change', msg, QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
         if res == QMessageBox.Yes:
-            os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
+            os.execv(sys.executable, [sys.executable, os.path.abspath(__file__)])
+
 
 ########################################
 #

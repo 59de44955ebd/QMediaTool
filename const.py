@@ -6,7 +6,7 @@ import os
 import sys
 
 APP_NAME = 'QMediaTool'
-APP_VERSION = 3
+APP_VERSION = 4
 
 IS_WIN = os.name == 'nt'
 

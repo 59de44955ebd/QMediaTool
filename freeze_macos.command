@@ -33,7 +33,7 @@ rm -R -f $qtdir/translations
 
 # remove needless plugins
 find $qtdir/plugins -mindepth 1 -maxdepth 1 -type d \
--not -name 'platforms' \
+-not -name 'platforms' -not -name 'styles' \
 -print0|xargs -0 -I {} rm -R -f {}
 rm $qtdir/plugins/platforms/libqoffscreen.dylib
 rm $qtdir/plugins/platforms/libqwebgl.dylib
