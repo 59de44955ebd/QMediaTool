@@ -2,10 +2,8 @@
 A general purpose media conversion tool based on Python 3, PyQt5, SQLite 3 and [FFmpeg](https://ffmpeg.org/).
 
 # Setup
-
-## Windows
-
 I decided to remove all binaries from this repository, instead those now come from external platform-specific repositories.
+## Windows
 ```
 https://github.com/59de44955ebd/QMediaTool.git
 cd QMediaTool
@@ -41,9 +39,9 @@ sudo apt install ffmpeg atomicparsley mediainfo vlc yt-dlp gpac
 *QMediaTool in Linux (Debian 12/Cinnamon)*  
 ![](screenshots/qmediatool_debian12.png)
 
-# Usage #
+# Usage
 
-## Presets and Tasks ##
+## Presets and Tasks
 
 QMediaTool is basically a database for your favorite ffmpeg command lines, which are called "presets" in the app. Presets can be organized under arbitrary categories, the predefined categories and presets are just an offer, and you might as well delete or rename them as desired and use your own ones.
 
@@ -57,11 +55,11 @@ You can edit a task's code (loaded from a preset) at runtime before executing it
 
 Presets can have 0, 1 or multiple files or a URL as input, input files can be added by dropping them into the app window.
 
-## Environment variables ##
+## Environment variables
 
 When a selected preset is executed as task, in addition to the system's default variables the following environment variables are provided:
 
-### General variables: ###
+### General variables:
 
 * _$TOOLNAME_             - for any provided tool (see below), so e.g. $FFMPEG for ffmpeg.
 * $START                  - selected start time in seconds (float)
@@ -83,7 +81,7 @@ When a selected preset is executed as task, in addition to the system's default 
 * $TIMESTAMP              - current time in format "Ymd_HMS"
 * $IS_WIN                 - true if current OS is Windows, otherwise false
 
-### Single input file mode: ###
+### Single input file mode:
 
 * $INPUT                  - input file as full path
 * $INPUTDIR               - directory of input file
@@ -94,11 +92,11 @@ When a selected preset is executed as task, in addition to the system's default 
 * $TRACK                  - number of selected track (starting at 0)
 * $FORMAT                 - format of track selected by $TRACK
 
-### Input url mode: ###
+### Input url mode:
 
 * $URL                    - URL entered into field "Input URL"
 
-### Multiple input files mode: ###
+### Multiple input files mode:
 
 * $CNT                    - the number of input files
 * $INPUT0, $INPUT1, ...   - first, second, ... input file as full path
@@ -106,7 +104,7 @@ When a selected preset is executed as task, in addition to the system's default 
 * $INPUTBASENAME          - filename of first input file (with spaces replaced by underscore)
 
 
-## Provided/included binaries ##
+## Provided/included binaries
 
 In adition to ffmpeg, the following binaries are included both for macOS and Windows:
 
