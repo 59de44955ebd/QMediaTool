@@ -29,9 +29,15 @@ echo 'Copying resources...'
 echo '****************************************'
 
 cp presets.db dist/
-cp -R resources/* "dist/$APP_NAME.app/Contents/Resources/"
-rm -R "dist/$APP_NAME.app/Contents/Resources/bash"
-rm -R "dist/$APP_NAME.app/Contents/Resources/bin/win"
+
+cp -R  resources/styles "dist/$APP_NAME.app/Contents/Resources/"
+cp -R  resources/ui "dist/$APP_NAME.app/Contents/Resources/"
+mkdir "dist/$APP_NAME.app/Contents/Resources/bin"
+cp -R  resources/bin/macos "dist/$APP_NAME.app/Contents/Resources/bin/"
+
+rm "dist/$APP_NAME.app/Contents/Resources/ui/app.png"
+rm "dist/$APP_NAME.app/Contents/Resources/ui/make_rcc.cmd"
+rm "dist/$APP_NAME.app/Contents/Resources/ui/res.qrc"
 
 echo
 echo '****************************************'

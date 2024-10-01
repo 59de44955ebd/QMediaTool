@@ -9,7 +9,6 @@ set APP_DIR=dist\%APP_NAME%
 
 :: cleanup
 rmdir /s /q "dist\%APP_NAME%" 2>nul
-del "dist\%APP_NAME%-x64-setup.exe" 2>nul
 del "dist\%APP_NAME%-x64-portable.7z" 2>nul
 
 echo.
@@ -32,11 +31,14 @@ echo ****************************************
 echo Optimizing dist folder...
 echo ****************************************
 
-xcopy /q /e resources "%APP_DIR%\resources\"
+md "%APP_DIR%\resources"
+xcopy /q /e resources\bash "%APP_DIR%\resources\bash\"
+xcopy /q /e resources\bin\win "%APP_DIR%\resources\bin\win\"
+xcopy /q /e resources\styles "%APP_DIR%\resources\styles\"
+xcopy /q /e resources\ui "%APP_DIR%\resources\ui\"
 del "%APP_DIR%\resources\ui\app.png"
 del "%APP_DIR%\resources\ui\make_rcc.cmd"
 del "%APP_DIR%\resources\ui\res.qrc"
-rmdir /s /q "%APP_DIR%\resources\bin\macos" 2>NUL
 
 copy presets.db "%APP_DIR%\" >nul
 

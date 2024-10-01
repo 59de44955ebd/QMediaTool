@@ -1,8 +1,37 @@
 # QMediaTool
 A general purpose media conversion tool based on Python 3, PyQt5, SQLite 3 and [FFmpeg](https://ffmpeg.org/).
 
-# Screenshots #
+# Setup
 
+## Windows
+
+I decided to remove all binaries from this repository, instead those now come from external platform-specific repositories.
+```
+https://github.com/59de44955ebd/QMediaTool.git
+cd QMediaTool
+git clone https://github.com/59de44955ebd/QMediaTool-bin-win.git resources/bin/win
+```
+
+## macOS
+```
+https://github.com/59de44955ebd/QMediaTool.git
+cd QMediaTool
+git clone https://github.com/59de44955ebd/QMediaTool-bin-macos.git resources/bin/macos
+```
+
+## Linux
+```
+https://github.com/59de44955ebd/QMediaTool.git
+cd QMediaTool
+git clone https://github.com/59de44955ebd/QMediaTool-bin-linux.git resources/bin/linux
+```
+In Linux no actual binaries are bundled with the application, "QMediaTool-bin-linux" only contains dummy shell scripts. You have to install the actual binaries yourself, e.g. in Debian/Ubuntu by running:
+``` 
+# note: gpac (MP4Box) is only available in Ubuntu, in Debian you have to compile it yourself
+sudo apt install ffmpeg atomicparsley mediainfo vlc yt-dlp gpac
+```
+
+# Screenshots
 *QMediaTool in Windows 11*  
 ![](screenshots/qmediatool_win11.png)
 
