@@ -10,3 +10,6 @@ _backup.rar
 /QPyMediaTool.exe
 /QPyMediaTool.ini
 /QMediaTool.spec
+/resources/bin/win
+/resources/bin/macos
+/resources/bin/linux
