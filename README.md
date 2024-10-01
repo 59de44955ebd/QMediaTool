@@ -16,7 +16,7 @@ QMediaTool.cmd # or: python main.py
 https://github.com/59de44955ebd/QMediaTool.git
 cd QMediaTool
 git clone https://github.com/59de44955ebd/QMediaTool-bin-macos.git resources/bin/macos
-./MediaTool # or: python3 main.py
+./QMediaTool # or: python3 main.py
 ```
 
 ## Linux
@@ -24,7 +24,7 @@ git clone https://github.com/59de44955ebd/QMediaTool-bin-macos.git resources/bin
 https://github.com/59de44955ebd/QMediaTool.git
 cd QMediaTool
 git clone https://github.com/59de44955ebd/QMediaTool-bin-linux.git resources/bin/linux
-./MediaTool # or: python3 main.py
+./QMediaTool # or: python3 main.py
 ```
 In Linux no actual binaries are bundled with the application, "QMediaTool-bin-linux" only contains dummy shell scripts. You have to install the actual binaries yourself, e.g. in Debian/Ubuntu by running:
 ``` 
