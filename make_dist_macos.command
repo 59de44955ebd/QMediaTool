@@ -33,7 +33,7 @@ cp presets.db dist/
 cp -R  resources/styles "dist/$APP_NAME.app/Contents/Resources/"
 cp -R  resources/ui "dist/$APP_NAME.app/Contents/Resources/"
 mkdir "dist/$APP_NAME.app/Contents/Resources/bin"
-cp -R  resources/bin/macos "dist/$APP_NAME.app/Contents/Resources/bin/"
+rsync -aq --exclude='*/.git*' resources/bin/macos "dist/$APP_NAME.app/Contents/Resources/bin"
 
 rm "dist/$APP_NAME.app/Contents/Resources/ui/app.png"
 rm "dist/$APP_NAME.app/Contents/Resources/ui/make_rcc.cmd"
