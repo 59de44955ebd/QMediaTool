@@ -1,0 +1,63 @@
+<head>
+<style>
+body {
+	font-family: Arial;
+}
+pre {
+	font-family: Consolas, Monaco, "Courier New";
+	margin: 0;
+	padding: 0;
+}
+</style>
+</head>
+<body>
+<pre>
+Preset code is always executed using bash.
+The following custom environment variables can be used in preset code:
+
+# general variables
+
+$START                  selected start time in seconds (float)
+$END                    selected end time in seconds (float)
+$DURATION               selected duration in seconds (float)
+$CONTAINER              selected container (string)
+$CONTAINERVIDEO         selected video container (string)
+$CONTAINERAUDIO         selected audio container (string)
+$CONTAINERIMAGE         selected image container (string)
+$CODECVIDEO             selected video codec (string)
+$BITRATEVIDEO           selected video bitrate
+$CODECAUDIO             selected audio codec (string)
+$BITRATEAUDIO           selected audio bitrate
+$PRESET                 selected preset
+$FPS                    selected fps (float)
+$CRF                    selected crf (int)
+$DEVICEVIDEO            selected video device (name in Windows, index in macOS)
+$DEVICEAUDIO            selected audio device (name in Windows, index in macOS)
+$OUTPUTDIR              selected output directory
+$TIMESTAMP              current time in format "Ymd_HMS"
+$IS_WIN                 true if current OS is Windows, otherwise false
+
+# single input file mode
+
+$INPUT                  input file's full path
+$INPUTDIR               directory of input file
+$INPUTBASENAME          of input file's name without ext. (spaces replaced by underscore)
+$INPUTEXT               file extension if input file
+$FORMAT0, $FORMAT1, ... format of first, second, ... track
+$FPS0, $FPS1, ...       frame rate of first, second, ... track
+$TRACK                  number of selected track (starting at 0)
+$FORMAT                 format of track selected by $TRACK
+
+# input url mode
+
+$URL                    URL entered into field "Input URL"
+
+# multiple input files mode
+
+$CNT                    the number of input files
+$INPUT0, $INPUT1, ...   first, second, ... input file as full path
+$INPUTEXT               extension of first input file
+$INPUTBASENAME          first input file's name without ext. (spaces replaced by underscore)
+
+</pre>
+</body>

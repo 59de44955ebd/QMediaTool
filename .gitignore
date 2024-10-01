@@ -1,0 +1,12 @@
+build/
+dist/
+/.vscode
+/output/*
+!/output/.gitkeep
+/env
+*.code-workspace
+__pycache__
+_backup.rar
+/QPyMediaTool.exe
+/QPyMediaTool.ini
+/QMediaTool.spec

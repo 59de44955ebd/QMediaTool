@@ -1,0 +1,17 @@
+* {
+	font-size: 11px;
+}
+QProgressBar {
+	height: 10px;
+}
+QProgressBar#progressBarCurrentDur::chunk {
+	border-radius: 2px;
+	background-color: #06b025;
+}
+QProgressBar#progressBarRecommendedDur::chunk {
+	border-radius: 2px;
+	background-color: #bb0000;
+}
+QTextBrowser#textBrowserHelp:focus {
+	border: none;
+}

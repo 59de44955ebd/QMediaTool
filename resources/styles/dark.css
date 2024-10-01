@@ -1,0 +1,37 @@
+* {
+	font-size: 11px;
+}
+QComboBox::separator {
+	background-color: #999999;
+	height: 1px;
+	margin: 3px 3px;
+}
+QMenu::separator {
+	background-color: #4d4d4d;
+	height: 1px;
+	margin-top: 3px;
+	margin-bottom: 0px;
+}
+QPlainTextEdit:focus {
+	border: 1px solid #53A0ED;
+}
+QProgressBar {
+	height: 10px;
+}
+QProgressBar#progressBarCurrentDur::chunk {
+	border-radius: 2px;
+	background-color: #06b025;
+}
+QProgressBar#progressBarRecommendedDur::chunk {
+	border-radius: 2px;
+	background-color: #bb0000;
+}
+QTextEdit:focus {
+	border: 1px solid #53A0ED;
+}
+QTextBrowser#textBrowserHelp:focus {
+	border: none;
+}
+QToolButton:checked {
+	background-color: #2A82DA;
+}
